@@ -1,0 +1,22 @@
+name: Compilar y probar
+
+on:
+  push:
+    paths:
+      - "Source/**"
+      - ".github/workflows/build.yml"
+  pull_request:
+    paths:
+      - "Source/**"
+
+jobs:
+  build-and-test:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compilar
+        run: swiftc -O Source/main.swift -o /tmp/okipaste_ci
+
+      - name: Pruebas automatizadas (--selftest)
+        run: /tmp/okipaste_ci --selftest
