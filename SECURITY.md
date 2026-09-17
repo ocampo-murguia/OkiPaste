@@ -3,7 +3,7 @@
 OkiPaste toca el portapapeles del sistema y necesita el permiso de Accesibilidad de macOS para pegar. Si encuentras un problema de seguridad o privacidad (no un error normal de uso), repórtalo por separado de los issues públicos de GitHub, para que no quede expuesto antes de tener una corrección:
 
 - Abre un **Security Advisory** privado desde la pestaña "Security" del repositorio (GitHub → Security → Report a vulnerability), o
-- Escribe directamente a {{CORREO_SEGURIDAD}} con el detalle de cómo reproducirlo.
+- Escribe directamente a ocampo.murguia@gmail.com con el detalle de cómo reproducirlo.
 
 No se requiere ningún trato de "recompensa" ni de respuesta en tiempo garantizado: este es un proyecto de una sola persona. Se atienden reportes serios con la máxima prioridad posible.
 
