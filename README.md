@@ -1,7 +1,7 @@
 <!--
   NOTA INTERNA (no se ve en GitHub): este README es la entrega E01 de DeepSeek, revisada por Claude.
   Pendiente antes de publicar:
-  1. {{GIF_DEMO}}, {{LINK_DESCARGA}}, {{LINK_FORMULARIO}}, {{URL_PAGINA}} y {{USUARIO_GITHUB}} son marcadores.
+  1. {{GIF_DEMO}} sigue pendiente (falta grabar). Los demás marcadores ya se resolvieron hoy.
   2. El nombre del botón de macOS 15 («Abrir de todos modos») está [VERIFICAR en macOS 15]: la guía en PDF
      dice «Abrir igualmente». Ver Encargos DeepSeek/fuentes/CORRECCIONES-2026-09-17.md
   3. El título y la línea de arriba se pueden ajustar al gusto de Alejandro.
@@ -9,9 +9,9 @@
 
 # OkiPaste
 
-Historial de portapapeles para Mac. **Gratis, solo Mac y no se conecta a internet.**
+Historial de portapapeles para Mac. **Gratis, para usuarios Mac y no se conecta a internet.**
 
-![demo]({{GIF_DEMO}})
+<!-- Demo pendiente: se agrega el GIF cuando exista la grabación. -->
 
 ---
 
@@ -41,7 +41,7 @@ No hay versión para Windows ni para iPhone. Es solo para Mac.
 
 ## Cómo instalarla
 
-Descarga **`OkiPaste.dmg`** desde la [página de descarga]({{URL_PAGINA}}) o desde la sección de *Releases* de este repositorio.
+Descarga **`OkiPaste.dmg`** desde la [página de descarga](https://ocampo-murguia.github.io/OkiPaste/) o desde la sección de *Releases* de este repositorio.
 
 Al abrir el `.dmg` vas a ver tres cosas: `OkiPaste.app`, un acceso a la carpeta **Aplicaciones** y la `Guía OkiPaste.pdf`.
 
@@ -120,7 +120,7 @@ Se quita la app, el historial, el inicio automático y el permiso de Accesibilid
 
 ## ¿Ideas o errores?
 
-Si algo no funcionó, si un paso no se entiende o si se te ocurre algo que le falta, cuéntame aquí: **{{LINK_FORMULARIO}}**
+Si algo no funcionó, si un paso no se entiende o si se te ocurre algo que le falta, cuéntame aquí: **https://forms.gle/vfQLNd4XpR9w6BHv7**
 
 Sirve mucho que me digas en qué paso te trabaste. Con eso puedo arreglarlo.
 
