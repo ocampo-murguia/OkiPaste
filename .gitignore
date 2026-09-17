@@ -1,0 +1,13 @@
+# Basura del sistema de archivos de macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Si alguien abre el proyecto de la animación aquí
+node_modules/
+out/
+
+# Cosas de editor
+.vscode/
+.idea/

@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OkiPaste — historial de portapapeles para Mac</title>
+<meta name="description" content="OkiPaste guarda lo que copias en tu Mac para volver a pegarlo después. Gratis, solo Mac y no se conecta a internet.">
+<!-- Vista previa al pegar el link en WhatsApp o redes. {{URL_PAGINA}} se llena al publicar. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="OkiPaste">
+<meta property="og:title" content="OkiPaste — historial de portapapeles para Mac">
+<meta property="og:description" content="Guarda lo que copias en tu Mac para volver a pegarlo después. Gratis, solo Mac y no se conecta a internet.">
+<meta property="og:url" content="{{URL_PAGINA}}">
+<meta property="og:image" content="{{URL_PAGINA}}icono-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="icono-256.png">
+<link rel="apple-touch-icon" href="icono-256.png">
+<style>
+:root{
+  --bg:#f6f5f1; --card:#fff; --soft:#efede7; --text:#1f1e1c; --muted:#6b6a65;
+  --line:#dedcd4; --acc:#185fa5; --acc-texto:#fff; --acc-suave:#e6f1fb; --sombra:0 1px 2px rgba(0,0,0,.05),0 8px 24px rgba(0,0,0,.06);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#1b1b1a; --card:#242422; --soft:#2c2c2a; --text:#ecebe6; --muted:#a8a69f;
+  --line:#3a3a37; --acc:#3d8fd6; --acc-texto:#08131f; --acc-suave:#12293d;
+  --sombra:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.01em}
+a{color:var(--acc)}
+code{font-size:.9em;background:var(--soft);padding:2px 6px;border-radius:5px;border:1px solid var(--line)}
+kbd{
+  font:inherit;font-size:.85em;background:var(--soft);border:1px solid var(--line);
+  border-bottom-width:2px;border-radius:6px;padding:2px 7px;white-space:nowrap;
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* ---------- Portada ---------- */
+.hero{padding:72px 0 56px;text-align:center}
+.hero img{width:96px;height:96px;display:block;margin:0 auto 22px;border-radius:22px;box-shadow:var(--sombra)}
+.hero h1{font-size:clamp(30px,6vw,44px);line-height:1.15;margin:0 0 14px}
+.hero h1 .lema{display:block;font-size:.58em;line-height:1.3;color:var(--muted);margin-top:10px}
+.hero .sub{font-size:clamp(17px,2.4vw,20px);color:var(--muted);margin:0 auto 30px;max-width:34em}
+.boton{
+  display:inline-block;background:var(--acc);color:var(--acc-texto);text-decoration:none;
+  font-size:18px;font-weight:600;padding:15px 34px;border-radius:999px;box-shadow:var(--sombra);
+  transition:transform .12s ease,filter .12s ease;
+}
+.boton:hover{transform:translateY(-1px);filter:brightness(1.07)}
+.boton:active{transform:translateY(0)}
+.boton:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.requisitos{font-size:14.5px;color:var(--muted);margin:16px 0 0}
+.etiquetas{list-style:none;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:0;margin:26px 0 0}
+.etiquetas li{
+  font-size:14px;color:var(--muted);background:var(--card);border:1px solid var(--line);
+  border-radius:999px;padding:6px 14px;
+}
+
+/* ---------- Secciones ---------- */
+section{padding:44px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(23px,3.4vw,30px);margin:0 0 18px}
+p{margin:0 0 16px}
+p:last-child{margin-bottom:0}
+.muted{color:var(--muted)}
+
+.bloques{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.bloque{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.bloque b{display:block;margin-bottom:6px;font-size:17px}
+.bloque p{margin:0;color:var(--muted);font-size:15.5px}
+
+/* ---------- Pestañas de instalación ---------- */
+.tabs{display:flex;gap:8px;margin:0 0 20px;flex-wrap:wrap}
+.tabs button{
+  font:inherit;font-size:15px;background:var(--soft);color:var(--muted);border:1px solid var(--line);
+  border-radius:999px;padding:9px 18px;cursor:pointer;
+}
+.tabs button[aria-selected="true"]{background:var(--acc);color:var(--acc-texto);border-color:var(--acc);font-weight:600}
+.tabs button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+[hidden]{display:none !important}
+
+ol.pasos{counter-reset:p;list-style:none;padding:0;margin:0}
+ol.pasos li{counter-increment:p;position:relative;padding:0 0 20px 46px}
+ol.pasos li::before{
+  content:counter(p);position:absolute;left:0;top:1px;width:30px;height:30px;border-radius:50%;
+  background:var(--soft);border:1px solid var(--line);color:var(--muted);
+  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;
+}
+ol.pasos li:last-child{padding-bottom:0}
+/* Solo el <b> del principio es título en su propia línea. Las negritas de
+   en medio de la frase (Descargas, Aplicaciones…) tienen que seguir en línea:
+   si no, parten la oración y el punto acaba solo en el renglón de abajo. */
+ol.pasos li > b:first-child{display:block}
+
+.aviso{
+  background:var(--soft);border-left:3px solid var(--acc);border-radius:0 12px 12px 0;
+  padding:16px 20px;margin:22px 0;
+}
+.aviso p:last-child{margin-bottom:0}
+.ayuda{font-size:15px;color:var(--muted);margin-top:22px}
+
+/* ---------- FAQ ---------- */
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
+details summary{
+  cursor:pointer;padding:15px 20px;font-weight:600;list-style:none;
+  display:flex;justify-content:space-between;gap:14px;align-items:center;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--muted);font-weight:400;font-size:20px;line-height:1}
+details[open] summary::after{content:"–"}
+details .cuerpo{padding:0 20px 18px;color:var(--muted)}
+details .cuerpo p:last-child{margin-bottom:0}
+
+/* ---------- Pie ---------- */
+footer{padding:44px 0 64px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:15px}
+footer p{margin:0 0 8px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+
+<!--
+  ============================================================
+  PÁGINA DE DESCARGA — OkiPaste
+  Diseño y código: Claude · textos: DeepSeek (encargo E01), integrados el 2026-09-17
+  ------------------------------------------------------------
+  DATOS QUE FALTAN (marcadores del proyecto). Al publicar hay que sustituirlos:
+    {{LINK_DESCARGA}}   → URL del .dmg en el Release de GitHub
+    {{LINK_FORMULARIO}} → URL del formulario de Google (E02)
+    {{USUARIO_GITHUB}}  → usuario de GitHub de Alejandro
+    {{URL_PAGINA}}      → la dirección final de esta página (al publicar en Pages),
+                          con diagonal al final: se usa para la vista previa al compartir
+  ------------------------------------------------------------
+  PENDIENTE INTERNO: el nombre del botón de macOS 15 (ver el comentario en la
+  pestaña «macOS 15 o más nuevo» y fuentes/CORRECCIONES-2026-09-17.md).
+  ============================================================
+-->
+
+<header class="hero">
+  <div class="wrap">
+    <img src="icono-512.png" alt="Ícono de OkiPaste" width="96" height="96">
+    <h1>OkiPaste <span class="lema">Lo que copiaste, a un atajo de distancia</span></h1>
+    <p class="sub">
+      OkiPaste guarda lo que copias en tu Mac para que lo pegues después, cuando lo necesites.
+    </p>
+    <!-- Texto del botón — E01 [HERO] -->
+    <p><a class="boton" href="{{LINK_DESCARGA}}">Descargar OkiPaste</a></p>
+    <p class="requisitos">Gratis · macOS 12 o posterior · Universal (Intel y Apple&nbsp;Silicon)</p>
+    <ul class="etiquetas">
+      <li>Gratis</li>
+      <li>Solo Mac</li>
+      <li>No usa internet</li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="historia">
+    <h2>Por qué la hice</h2>
+    <p>Soy cirujano. En la residencia copiaba algo, copiaba otra cosa encima y perdía lo primero. Mi Mac no tenía forma de volver a lo anterior. No sé programar: aprendí con ayuda de IA e hice OkiPaste para mí. La uso todos los días y la comparto por si a alguien más le sirve.</p>
+  </section>
+
+  <section id="que-hace">
+    <h2>Qué hace</h2>
+    <div class="bloques">
+      <div class="bloque">
+        <b>Todo lo que copias</b>
+        <p>Texto, imágenes, enlaces, colores, PDF y varios archivos a la vez.</p>
+      </div>
+      <div class="bloque">
+        <b>Un atajo, nada más</b>
+        <p>Pulsa ⌃⌥⌘V en cualquier app y elige con un clic.</p>
+      </div>
+      <div class="bloque">
+        <b>Busca mientras escribes</b>
+        <p>Con la barra abierta, escribe y se filtra solo; Enter pega.</p>
+      </div>
+      <div class="bloque">
+        <b>Se borra cada día</b>
+        <p>Guarda 25 cosas como máximo y se limpia al cambiar el día.</p>
+      </div>
+    </div>
+    <p class="ayuda">
+      También funciona con el teclado: flechas y Enter, <kbd>⌘</kbd>+<kbd>1</kbd>–<kbd>9</kbd> para pegar directo,
+      y <kbd>⇧</kbd>+<kbd>Enter</kbd> para pegar sin formato.
+    </p>
+  </section>
+
+  <section id="instalar">
+    <h2>Cómo instalarla</h2>
+    <p class="muted">
+      Tarda un minuto. Antes de empezar, mira cuál de las dos rutas te toca.
+    </p>
+
+    <div class="tabs" role="tablist" aria-label="Versión de macOS">
+      <button role="tab" id="t14" aria-controls="p14" aria-selected="true">macOS 14 o anterior</button>
+      <button role="tab" id="t15" aria-controls="p15" aria-selected="false">macOS 15 o más nuevo</button>
+    </div>
+
+    <!-- Ruta macOS 14 o anterior -->
+    <div role="tabpanel" id="p14" aria-labelledby="t14">
+      <ol class="pasos">
+        <li><b>Descarga el archivo</b> Pulsa el botón de arriba y espera a que aparezca <code>OkiPaste.dmg</code> en tu carpeta <b>Descargas</b>.</li>
+        <li><b>Abre el disco</b> Haz doble clic en <code>OkiPaste.dmg</code>. Se abre una ventanita con tres cosas dentro.</li>
+        <li><b>Arrastra la app</b> Lleva el ícono de OkiPaste hasta la carpeta <b>Aplicaciones</b>.</li>
+        <li><b>Ábrela</b> Entra a <b>Aplicaciones</b>, haz <b>clic derecho</b> sobre OkiPaste → <b>Abrir</b> → y otra vez <b>Abrir</b>. Sale un aviso de seguridad: es normal, mira abajo.</li>
+        <li><b>Dale permiso</b> macOS te pedirá el permiso de <b>Accesibilidad</b>: actívalo. Sin él, OkiPaste no puede pegar por ti.</li>
+      </ol>
+    </div>
+
+    <!-- Ruta macOS 15 o más nuevo -->
+    <div role="tabpanel" id="p15" aria-labelledby="t15" hidden>
+      <ol class="pasos">
+        <li><b>Descarga el archivo</b> Pulsa el botón de arriba y espera a que aparezca <code>OkiPaste.dmg</code> en tu carpeta <b>Descargas</b>.</li>
+        <li><b>Abre el disco</b> Haz doble clic en <code>OkiPaste.dmg</code>. Se abre una ventanita con tres cosas dentro.</li>
+        <li><b>Arrastra la app</b> Lleva el ícono de OkiPaste hasta la carpeta <b>Aplicaciones</b>.</li>
+        <li><b>Intenta abrirla</b> Entra a <b>Aplicaciones</b> y haz doble clic en OkiPaste. Te va a salir un aviso que dice que Apple no puede verificar la app. <b>Cierra ese aviso</b> (no la mandes a la papelera).</li>
+        <li><b>Permítele abrirse</b> Ve al menú Apple → <b>Ajustes del Sistema</b> → <b>Privacidad y seguridad</b>. Baja hasta el final y busca el mensaje sobre OkiPaste. Pulsa <b>«Abrir de todos modos»</b> y escribe tu contraseña. Después ábrela otra vez desde Aplicaciones.</li>
+        <li><b>Dale permiso</b> macOS te pedirá el permiso de <b>Accesibilidad</b>: actívalo. Sin él, OkiPaste no puede pegar por ti.</li>
+      </ol>
+      <!-- PENDIENTE INTERNO (no visible para el visitante): el nombre exacto del botón de
+           macOS 15. Aquí se dice «Abrir de todos modos»; la guía en PDF que va dentro del .dmg
+           lo llama «Abrir igualmente». Al grabar en la Mac de video se confirma cuál es el
+           bueno y se dejan los cuatro lados iguales (guía, página, README y ficha).
+           Ver Encargos DeepSeek/fuentes/CORRECCIONES-2026-09-17.md -->
+    </div>
+
+    <div class="aviso">
+      <p><b>¿Por qué Apple me advierte?</b></p>
+      <p class="muted">
+        Porque OkiPaste es gratis y no está registrada con Apple: ese trámite cuesta 99&nbsp;USD al año.
+        El aviso no significa que la app tenga algo malo — significa que Apple no la revisó.
+        El código está abierto en GitHub para que cualquiera lo lea.
+        Es el aviso que macOS le pone a cualquier app que no pasó por su revisión.
+      </p>
+    </div>
+  </section>
+
+  <section id="privacidad">
+    <h2>Tu privacidad</h2>
+    <p>OkiPaste no se conecta a internet: no hay cuentas, ni anuncios, ni servidores. Todo lo que copias se queda en una carpeta de tu Mac. Puedes borrarlo cuando quieras, y al desinstalarla se va también el historial.</p>
+    <p class="ayuda">
+      Lo que ya está verificado en el código: <b>no se conecta a internet</b>, el historial se queda en tu Mac,
+      <b>nunca guarda contraseñas</b> copiadas de un gestor, y «Desinstalar OkiPaste…» borra la app,
+      el historial, el inicio automático y el permiso.
+    </p>
+  </section>
+
+  <section id="faq">
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Es segura?</summary><div class="cuerpo"><p>Sí. No se conecta a internet ni manda nada a ningún lado. Lo que copias se queda en tu Mac, y puedes borrarlo del menú del ícono cuando quieras.</p></div></details>
+    <details><summary>¿Por qué Apple me advierte al abrirla?</summary><div class="cuerpo"><p>Porque no está notarizada: ese trámite cuesta 99 USD al año y esta app es gratis. El aviso dice que Apple no la revisó, no que tenga algo malo.</p></div></details>
+    <details><summary>¿Funciona en Windows o en iPhone?</summary><div class="cuerpo"><p>No. OkiPaste es solo para Mac, macOS 12 o más nuevo. No hay versión para Windows ni para iPhone.</p></div></details>
+    <details><summary>¿Dónde se guarda lo que copio?</summary><div class="cuerpo"><p>En una carpeta llamada OkiPaste, dentro de tu carpeta de usuario. Nunca sale de tu Mac y se borra sola al cambiar el día.</p></div></details>
+    <details><summary>¿Cómo la quito si no me gusta?</summary><div class="cuerpo"><p>Haz clic en el ícono de OkiPaste en la barra de menú y elige Desinstalar OkiPaste… Se quita la app, el historial, el inicio automático y el permiso.</p></div></details>
+    <details><summary>¿Cuesta algo?</summary><div class="cuerpo"><p>No. Es gratis, sin cuenta y sin anuncios. No hay versión de pago ni funciones escondidas.</p></div></details>
+  </section>
+
+  <section id="version">
+    <h2>¿Y si no sé qué macOS tengo?</h2>
+    <ol class="pasos">
+      <li><b>Menú Apple</b> Haz clic en el logo de la manzana, arriba a la izquierda de la pantalla.</li>
+      <li><b>Acerca de esta Mac</b> Elige esa opción: ahí aparece el nombre y el número de tu sistema.</li>
+    </ol>
+    <p class="ayuda">
+      ¿Te dio un error o algo no funcionó?
+      <a href="{{LINK_FORMULARIO}}">Cuéntame aquí</a> y lo reviso — la app lleva un registro de lo que hace,
+      así que puedo ver qué pasó con más detalle.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Hecha por un cirujano con ayuda de IA.</p>
+    <p><a href="https://github.com/{{USUARIO_GITHUB}}">Código en GitHub</a></p>
+    <p class="muted">OkiPaste es gratis y no se conecta a internet.</p>
+  </div>
+</footer>
+
+<script>
+// Pestañas de instalación: sólo decide cuál de los dos paneles se ve.
+// Sin librerías, para que la página funcione abierta desde el disco.
+(function () {
+  var botones = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+
+  function activar(indice) {
+    botones.forEach(function (boton, i) {
+      var panel = document.getElementById(boton.getAttribute('aria-controls'));
+      var elegido = (i === indice);
+      boton.setAttribute('aria-selected', elegido ? 'true' : 'false');
+      panel.hidden = !elegido;
+    });
+  }
+
+  botones.forEach(function (boton, i) {
+    boton.addEventListener('click', function () { activar(i); });
+    boton.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') { return; }
+      e.preventDefault();
+      var paso = (e.key === 'ArrowRight') ? 1 : botones.length - 1;
+      var siguiente = (i + paso) % botones.length;
+      activar(siguiente);
+      botones[siguiente].focus();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
