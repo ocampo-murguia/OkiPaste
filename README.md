@@ -17,7 +17,7 @@ Historial de portapapeles para Mac. **Gratis, solo Mac y no se conecta a interne
 
 ## Por qué la hice
 
-Escribiendo mi tesis juntaba pedazos de artículos y notas médicas. En el trabajo, Windows trae historial de portapapeles de fábrica y avanzaba sin problema. En la noche, en mi Mac, no podía seguir el mismo ritmo. Soy cirujano general, no sé programar: la hice con ayuda de IA y la uso a diario.
+Estaba escribiendo mi tesis, reuniendo información de varias fuentes y de mis propias notas médicas. En el hospital, con Windows, el historial del portapapeles ya venía de fábrica: nunca perdía nada. En mi Mac, de noche, sí. Soy cirujano general y no sé programar, pero no quise resignarme: con ayuda de inteligencia artificial hice OkiPaste, y hoy la uso todos los días.
 
 ## Qué hace
 
