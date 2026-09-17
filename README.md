@@ -17,7 +17,7 @@ Historial de portapapeles para Mac. **Gratis, solo Mac y no se conecta a interne
 
 ## Por qué la hice
 
-Soy cirujano. En la residencia copiaba algo, copiaba otra cosa encima y perdía lo primero. Mi Mac no tenía forma de volver a lo anterior. No sé programar: aprendí con ayuda de IA e hice OkiPaste para mí. La uso todos los días y la comparto por si a alguien más le sirve.
+Escribiendo mi tesis juntaba pedazos de artículos y notas médicas. En el trabajo, Windows trae historial de portapapeles de fábrica y avanzaba sin problema. En la noche, en mi Mac, no podía seguir el mismo ritmo. Soy cirujano general, no sé programar: la hice con ayuda de IA y la uso a diario.
 
 ## Qué hace
 
@@ -26,7 +26,7 @@ Soy cirujano. En la residencia copiaba algo, copiaba otra cosa encima y perdía 
 - Haces clic en una tarjeta (o usas el teclado) y **se pega sola** en la app donde estabas.
 - Escribes con la barra abierta y **filtra sola**, sin buscar ningún cuadro de búsqueda.
 - Guarda **25 cosas como máximo** y **se borra sola al cambiar el día**.
-- **Nunca guarda contraseñas** copiadas desde un gestor de contraseñas como 1Password.
+- **Protege las contraseñas de tus gestores:** las que copias desde **1Password, Enpass** u otro gestor que marca "no guardar esto" no entran al historial. Una contraseña que escribas a mano en una nota sí se guarda como cualquier texto; por eso conviene no dejarlas en notas.
 
 ## Requisitos
 
@@ -64,7 +64,7 @@ Al abrir el `.dmg` vas a ver tres cosas: `OkiPaste.app`, un acceso a la carpeta 
 
 ### Por qué sale el aviso de Apple
 
-OkiPaste es gratis y **no está notarizada** por Apple: ese trámite cuesta 99 USD al año y no lo pagué. El aviso **no** significa que la app tenga algo malo — significa que Apple no la revisó. Por eso el código está aquí, a la vista de cualquiera que quiera leerlo.
+OkiPaste es gratis y **no está notarizada** por Apple: Apple cobra por ese trámite cada año y no lo pagué. El aviso **no** significa que la app tenga algo malo — significa que Apple no la revisó. Por eso el código está aquí, a la vista de cualquiera que quiera leerlo.
 
 Es el mismo aviso que macOS le pone a cualquier app que no pasó por su revisión.
 
@@ -106,7 +106,8 @@ En la **barra de menú**, arriba junto al reloj, está el ícono de OkiPaste. Ah
 
 - **No se conecta a internet.** No envía nada a ningún lado: no hay cuentas, ni anuncios, ni servidores.
 - Tu historial vive **solo en tu Mac**, en una carpeta llamada `OkiPaste` dentro de tu carpeta de usuario.
-- **Nunca guarda contraseñas** copiadas de un gestor de contraseñas.
+- **No guarda las contraseñas de tus gestores:** reconoce lo que copias desde **1Password, Enpass** y los que marcan "no guardar esto". Una contraseña escrita a mano en una nota sí se guarda como cualquier texto.
+- El historial se guarda en **archivos normales, sin cifrar** — igual de protegido que cualquier otro archivo de tu cuenta.
 - El historial **se borra solo cada día**, y puedes vaciarlo cuando quieras desde el menú del ícono.
 - Al desinstalarla, se va también el historial.
 
@@ -135,4 +136,4 @@ Se compila con las herramientas de Apple (`swiftc` y `lipo`), que vienen con Xco
 
 MIT. Puedes leer el código, aprender de él y reusarlo. El texto completo está en [LICENSE](LICENSE).
 
-Hecha por Alejandro Ocampo con ayuda de IA.
+Hecha por un cirujano general con ayuda de IA.

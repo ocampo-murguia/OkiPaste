@@ -155,7 +155,7 @@ footer p{margin:0 0 8px}
     <p class="requisitos">Gratis · macOS 12 o posterior · Universal (Intel y Apple&nbsp;Silicon)</p>
     <ul class="etiquetas">
       <li>Gratis</li>
-      <li>Solo Mac</li>
+      <li>Para usuarios Mac</li>
       <li>No usa internet</li>
     </ul>
   </div>
@@ -165,7 +165,7 @@ footer p{margin:0 0 8px}
 
   <section id="historia">
     <h2>Por qué la hice</h2>
-    <p>Soy cirujano. En la residencia copiaba algo, copiaba otra cosa encima y perdía lo primero. Mi Mac no tenía forma de volver a lo anterior. No sé programar: aprendí con ayuda de IA e hice OkiPaste para mí. La uso todos los días y la comparto por si a alguien más le sirve.</p>
+    <p>Escribiendo mi tesis juntaba pedazos de artículos y notas médicas. En el trabajo, Windows trae historial de portapapeles de fábrica y avanzaba sin problema. En la noche, en mi Mac, no podía seguir el mismo ritmo. Soy cirujano general, no sé programar: la hice con ayuda de IA y la uso a diario.</p>
   </section>
 
   <section id="que-hace">
@@ -236,7 +236,7 @@ footer p{margin:0 0 8px}
     <div class="aviso">
       <p><b>¿Por qué Apple me advierte?</b></p>
       <p class="muted">
-        Porque OkiPaste es gratis y no está registrada con Apple: ese trámite cuesta 99&nbsp;USD al año.
+        Porque OkiPaste es gratis y no está registrada con Apple: Apple cobra por ese trámite cada año.
         El aviso no significa que la app tenga algo malo — significa que Apple no la revisó.
         El código está abierto en GitHub para que cualquiera lo lea.
         Es el aviso que macOS le pone a cualquier app que no pasó por su revisión.
@@ -249,15 +249,19 @@ footer p{margin:0 0 8px}
     <p>OkiPaste no se conecta a internet: no hay cuentas, ni anuncios, ni servidores. Todo lo que copias se queda en una carpeta de tu Mac. Puedes borrarlo cuando quieras, y al desinstalarla se va también el historial.</p>
     <p class="ayuda">
       Lo que ya está verificado en el código: <b>no se conecta a internet</b>, el historial se queda en tu Mac,
-      <b>nunca guarda contraseñas</b> copiadas de un gestor, y «Desinstalar OkiPaste…» borra la app,
-      el historial, el inicio automático y el permiso.
+      <b>las contraseñas copiadas de 1Password, Enpass o cualquier gestor que marque "no guardar esto" no entran al historial</b>,
+      y «Desinstalar OkiPaste…» borra la app, el historial, el inicio automático y el permiso.
+    </p>
+    <p class="ayuda">
+      Una contraseña escrita a mano en una nota se guarda como cualquier texto: la app no tiene forma de saber que es una contraseña.
+      Tu historial se guarda en archivos normales de tu Mac, sin cifrar — igual de protegido que cualquier otro archivo de tu cuenta.
     </p>
   </section>
 
   <section id="faq">
     <h2>Preguntas frecuentes</h2>
     <details><summary>¿Es segura?</summary><div class="cuerpo"><p>Sí. No se conecta a internet ni manda nada a ningún lado. Lo que copias se queda en tu Mac, y puedes borrarlo del menú del ícono cuando quieras.</p></div></details>
-    <details><summary>¿Por qué Apple me advierte al abrirla?</summary><div class="cuerpo"><p>Porque no está notarizada: ese trámite cuesta 99 USD al año y esta app es gratis. El aviso dice que Apple no la revisó, no que tenga algo malo.</p></div></details>
+    <details><summary>¿Por qué Apple me advierte al abrirla?</summary><div class="cuerpo"><p>Porque no está notarizada: Apple cobra por ese trámite cada año y esta app es gratis. El aviso dice que Apple no la revisó, no que tenga algo malo.</p></div></details>
     <details><summary>¿Funciona en Windows o en iPhone?</summary><div class="cuerpo"><p>No. OkiPaste es solo para Mac, macOS 12 o más nuevo. No hay versión para Windows ni para iPhone.</p></div></details>
     <details><summary>¿Dónde se guarda lo que copio?</summary><div class="cuerpo"><p>En una carpeta llamada OkiPaste, dentro de tu carpeta de usuario. Nunca sale de tu Mac y se borra sola al cambiar el día.</p></div></details>
     <details><summary>¿Cómo la quito si no me gusta?</summary><div class="cuerpo"><p>Haz clic en el ícono de OkiPaste en la barra de menú y elige Desinstalar OkiPaste… Se quita la app, el historial, el inicio automático y el permiso.</p></div></details>
@@ -272,8 +276,8 @@ footer p{margin:0 0 8px}
     </ol>
     <p class="ayuda">
       ¿Te dio un error o algo no funcionó?
-      <a href="{{LINK_FORMULARIO}}">Cuéntame aquí</a> y lo reviso — la app lleva un registro de lo que hace,
-      así que puedo ver qué pasó con más detalle.
+      <a href="{{LINK_FORMULARIO}}">Cuéntame aquí</a> y lo reviso. La app deja un registro interno en tu Mac,
+      así que puedo revisar qué pasó.
     </p>
   </section>
 
@@ -281,7 +285,7 @@ footer p{margin:0 0 8px}
 
 <footer>
   <div class="wrap">
-    <p>Hecha por un cirujano con ayuda de IA.</p>
+    <p>Hecha por un cirujano general con ayuda de IA.</p>
     <p><a href="https://github.com/{{USUARIO_GITHUB}}">Código en GitHub</a></p>
     <p class="muted">OkiPaste es gratis y no se conecta a internet.</p>
   </div>
